@@ -1,7 +1,6 @@
-import GameBoard from "components/screens/Game";
-
-import { Levels } from "components/screens/Game";
 import { createGrid, randomInRange } from "lib/game";
+
+import GameBoard, { Levels } from "components/pages/Gameboard";
 
 const levels: { [key in Levels]: number } = {
   easy: 3,
@@ -15,7 +14,7 @@ type Props = {
   params: { level: string };
 };
 
-export default function Play({ params }: Props) {
+export default function Game({ params }: Props) {
   const level = params.level as Levels;
   const gridLength = levels[level];
 
@@ -28,13 +27,11 @@ export default function Play({ params }: Props) {
     }))
   );
 
-  return (
-    <div className={containerClassName}>
-      <GameBoard grid={gridWithRotate} level={level} />
-    </div>
-  );
+  return <GameBoard grid={gridWithRotate} level={level} />;
 }
 
-const containerClassName = "w-full h-full flex flex-col items-center gap-10";
+export async function generateStaticParams() {
+  return Object.keys(levels).map((level) => level);
+}
 
 export const revalidate = 0;

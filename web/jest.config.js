@@ -5,5 +5,5 @@ const createJestConfig = nextJest({
 });
 
 module.exports = createJestConfig({
-  testPathIgnorePatterns: ["<rootDir>/src/test/e2e/"],
+  testPathIgnorePatterns: ["<rootDir>/src/tests/e2e/"],
 });

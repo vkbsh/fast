@@ -1,32 +1,67 @@
-# Web Application
+# 🚀 Fastned - The Charging Game
 
-It's built with Next.js, TypeScript, Tailwind CSS, Framer Motion, and React Hook Form.
+This is a web application built with the power of:
 
-## Project Structure
+- Next.js
+- TypeScript
+- Tailwind
+- Framer Motion
+- React Hook Form
 
-- `src/`: This directory contains all the source code for the application.
-  - `actions.ts`: This file contains the actions for the application.
-  - `app/`: This directory contains the main application code.
-    - `layout/`
-    - `template/`
-  - `components/`: This directory contains reusable React components.
-  - `config.ts`: This file contains the configuration for the application.
-  - `hooks/`: This directory contains custom React hooks.
-  - `lib/`:
-    - `game.ts`: description.
-    - `animation.ts`: description.
-    - `validation.ts`: description.
-  - `public/`: This directory contains static files like images.
-  - `styles/`: This directory contains CSS and other style-related files.
-  - `tests/`: This directory contains test files.
-    - `unit/`
-    - `e2e/`
-  - `utils/`: This directory contains utility functions.
+## 🎯 Getting Started
 
-## Getting Started
+> 💡 **Tip:** Don't forget to run the backend service first for a better experience!
 
-First, install the dependencies:
+### 📦 Installing Dependencies
 
-```sh
-npm install
+To install the dependencies:
+
+```bash
+yarn install
 ```
+
+### 🏗️ Building for Production
+
+To build the application for production:
+
+```bash
+yarn build
+```
+
+### 🚀 Running the Production Server
+
+To start the production server:
+
+```bash
+yarn start
+```
+
+> You can now access the application at `http://localhost:3000`.
+
+### 🧪 Running Unit Tests
+
+To execute the unit tests:
+
+```bash
+yarn test:unit
+```
+
+### 🌐 Running End-to-End Tests
+
+To perform the end-to-end tests:
+
+```bash
+yarn test:e2e
+```
+
+### 🏃‍♂️ Running the Development Server
+
+To start the development server:
+
+```bash
+yarn dev
+```
+
+> You can now access the application at `http://localhost:3000`.
+
+## 🎉 Enjoy the Game!

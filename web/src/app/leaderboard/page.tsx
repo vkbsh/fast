@@ -1,23 +1,13 @@
-import Link from "next/link";
-
-import Leaderboard from "components/screens/Leaderboard";
-
-import { PAGES } from "config";
+import Leaderboard from "components/pages/Leaderboard";
 
 import { getScores } from "actions";
 
 export default async function LeaderBoard() {
-  const data = await getScores();
-  const scores = data.scores || [];
-
-  return (
-    <div className={containerClassName}>
-      <Leaderboard data={scores} />
-      <Link href={PAGES.HOME} className="btn">
-        Play again
-      </Link>
-    </div>
-  );
+  try {
+    const data = await getScores();
+    const scores = data.scores || [];
+    return <Leaderboard data={scores} />;
+  } catch (e) {
+    return <Leaderboard data={[]} />;
+  }
 }
-
-const containerClassName = "flex flex-col justify-between items-center gap-10";

@@ -79,8 +79,8 @@ describe("addSides", () => {
         [
           {
             solved: true,
-            lineType: "orthogonal",
-            connectedSides: ["left", "bottom"],
+            lineType: "linear",
+            connectedSides: ["top", "bottom"],
           },
           {
             solved: false,
@@ -115,8 +115,8 @@ describe("addSides", () => {
           },
           {
             solved: true,
-            lineType: "orthogonal",
-            connectedSides: ["top", "right"],
+            lineType: "linear",
+            connectedSides: ["top", "bottom"],
           },
         ],
       ],

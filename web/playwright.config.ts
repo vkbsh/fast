@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3000;
 const baseURL = `http://localhost:${PORT}`;
 
 export default defineConfig({
-  testDir: "./src/test/e2e",
+  testDir: "./src/tests/e2e",
 
   fullyParallel: true,
 

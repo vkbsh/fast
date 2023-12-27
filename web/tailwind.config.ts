@@ -7,6 +7,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "475px",
+      },
       colors: {
         "yellow-600": "#FDDC2E",
         "yellow-100": "#FEF9C3",

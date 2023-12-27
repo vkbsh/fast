@@ -1,5 +1,5 @@
-export type Side = "left" | "top" | "right" | "bottom";
 export type Line = "linear" | "orthogonal";
+export type Side = "left" | "top" | "right" | "bottom";
 
 type Position = number[];
 type Path = Position[];
@@ -22,47 +22,13 @@ const lineTypes: { [key in Line]: Line } = {
   orthogonal: "orthogonal",
 };
 
-export function getLineType(connectedSides: Side[]): Line {
-  if (connectedSides.includes("top") && connectedSides.includes("bottom")) {
-    return lineTypes.linear;
-  }
+const sides: Side[] = ["top", "right", "bottom", "left"];
 
-  if (connectedSides.includes("left") && connectedSides.includes("right")) {
-    return lineTypes.linear;
-  }
+export function createGrid(gridDimension = 3) {
+  const solvedPath = findSolvedPath(gridDimension);
+  const grid = addSides(gridDimension, solvedPath);
 
-  return lineTypes.orthogonal;
-}
-
-export function createMatrix(length: number) {
-  return Array.from({ length }, () => Array.from({ length }, () => null));
-}
-
-export const getNormalizedRotation = (deg: number): number =>
-  ((deg / 90) % 4) * 90;
-
-export function randomInRange(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-export function isOriginalRotation(lineType: Line, rotate: number): boolean {
-  switch (lineType) {
-    case lineTypes.linear:
-      return [0, 180].includes(getNormalizedRotation(rotate));
-    case lineTypes.orthogonal:
-    default:
-      return [0].includes(getNormalizedRotation(rotate));
-  }
-}
-
-export function determineSide(
-  [rowIndex, colIndex]: Position,
-  [nextRowIndex, nextColIndex]: Position
-): Side | undefined {
-  if (rowIndex > nextRowIndex) return "top";
-  if (rowIndex < nextRowIndex) return "bottom";
-  if (colIndex < nextColIndex) return "right";
-  if (colIndex > nextColIndex) return "left";
+  return grid;
 }
 
 export function findSolvedPath(
@@ -97,8 +63,6 @@ export function findSolvedPath(
   return path;
 }
 
-const sides: Side[] = ["top", "right", "bottom", "left"];
-
 export function addSides(gridDimension: number, path: Path): Col[][] {
   const grid = createMatrix(gridDimension);
 
@@ -129,7 +93,7 @@ export function addSides(gridDimension: number, path: Path): Col[][] {
 
         if (currentPathIndex === 0) {
           connectedSides = [
-            "left",
+            "top",
             determineSide(currentPathPosition, next) as Side,
           ];
         }
@@ -140,7 +104,7 @@ export function addSides(gridDimension: number, path: Path): Col[][] {
           connectedSides = [
             oppositeSides[prevSide],
             currentPathIndex === lastIndex
-              ? "right"
+              ? "bottom"
               : (determineSide(currentPathPosition, next) as Side),
           ];
         }
@@ -155,9 +119,45 @@ export function addSides(gridDimension: number, path: Path): Col[][] {
   });
 }
 
-export function createGrid(gridDimension = 3) {
-  const solvedPath = findSolvedPath(gridDimension);
-  const grid = addSides(gridDimension, solvedPath);
+export function createMatrix(length: number) {
+  return Array.from({ length }, () => Array.from({ length }, () => null));
+}
 
-  return grid;
+export function getLineType(connectedSides: Side[]): Line {
+  if (connectedSides.includes("top") && connectedSides.includes("bottom")) {
+    return lineTypes.linear;
+  }
+
+  if (connectedSides.includes("left") && connectedSides.includes("right")) {
+    return lineTypes.linear;
+  }
+
+  return lineTypes.orthogonal;
+}
+
+export const getNormalizedRotation = (deg: number): number =>
+  ((deg / 90) % 4) * 90;
+
+export function randomInRange(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function isOriginalRotation(lineType: Line, rotate: number): boolean {
+  switch (lineType) {
+    case lineTypes.linear:
+      return [0, 180].includes(getNormalizedRotation(rotate));
+    case lineTypes.orthogonal:
+    default:
+      return [0].includes(getNormalizedRotation(rotate));
+  }
+}
+
+export function determineSide(
+  [rowIndex, colIndex]: Position,
+  [nextRowIndex, nextColIndex]: Position
+): Side | undefined {
+  if (rowIndex > nextRowIndex) return "top";
+  if (rowIndex < nextRowIndex) return "bottom";
+  if (colIndex < nextColIndex) return "right";
+  if (colIndex > nextColIndex) return "left";
 }

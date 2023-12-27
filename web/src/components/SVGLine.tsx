@@ -15,7 +15,7 @@ export default function SVGLine({
 
   return (
     <div className="relative w-full h-full">
-      <svg className="absolute top-0 left-0 w-full h-full">
+      <svg className="absolute w-full h-full">
         {sides.map((side) => {
           const [x1, y1, x2, y2] = getLineCoords(side);
 

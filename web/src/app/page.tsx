@@ -1,4 +1,4 @@
-import EVSelect from "components/screens/EVSelect";
+import EVSelect from "components/pages/EVSelect";
 
 export default function Home() {
   return <EVSelect />;

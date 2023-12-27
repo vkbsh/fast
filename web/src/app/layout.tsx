@@ -1,7 +1,11 @@
+import Link from "next/link";
+import Image from "next/image";
 import { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
-import Header from "components/layout/Header";
+import { PAGES } from "config";
+
+import logoSrc from "public/logo.svg";
 
 import "styles/globals.css";
 
@@ -15,9 +19,11 @@ export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
       <body className={font.className}>
-        <div className="container-app">
-          <Header />
-          <main className="main">{children}</main>
+        <div className="app-container">
+          <Link href={PAGES.HOME}>
+            <Image src={logoSrc} alt="Fastned-logo" className="w-[182px] h-6" />
+          </Link>
+          {children}
         </div>
       </body>
     </html>

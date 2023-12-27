@@ -1,27 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
+
+type Timer = ReturnType<typeof setInterval>;
 
 export default function useTimer() {
+  const intervalRef = useRef<Timer>();
   const [seconds, setSeconds] = useState(0);
-  const [isPaused, setPaused] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(
+    intervalRef.current = setInterval(
       () => setSeconds((seconds) => seconds + 1),
       1000
     );
 
-    if (isPaused) {
-      return clearInterval(interval);
-    }
+    return () => clearInterval(intervalRef.current);
+  }, []);
 
-    return () => clearInterval(interval);
-  }, [isPaused]);
-
-  const stopTimer = () => setPaused(true);
+  const stopTimer = useCallback(() => clearInterval(intervalRef.current), []);
 
   return {
     seconds,
-    isPaused,
     stopTimer,
   };
 }

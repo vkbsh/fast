@@ -8,7 +8,7 @@ function setCookies(name: string, data: any) {
   cookies().set(name, JSON.stringify(data));
 }
 
-function getCookies(name: string) {
+function getCookies<T>(name: string): T | undefined {
   const userScore = cookies().get(name)?.value;
 
   if (!userScore) return undefined;
@@ -17,13 +17,9 @@ function getCookies(name: string) {
 }
 
 export function getUserScoreFromCookies(): UserScore | undefined {
-  const userScore = cookies().get(USER_KEY)?.value;
-
-  if (!userScore) return undefined;
-
-  return getCookies(USER_KEY);
+  return getCookies<UserScore>(USER_KEY);
 }
 
-export function setUserScoreToCookies(data: UserScore) {
+export function setUserScoreToCookies(data: UserScore): void {
   setCookies(USER_KEY, data);
 }
