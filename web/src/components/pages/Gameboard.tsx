@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
-import useTimer from "hooks/useTimes";
+import useTimer from "hooks/useTimer";
 import { transition } from "lib/animation";
 import { Col, isOriginalRotation } from "lib/game";
 import { formatSecondsToMinutes } from "utils/dateTime";
